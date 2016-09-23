@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "358773225088",
+    "firebase_url": "https://alexandra-jullien.firebaseio.com",
+    "project_id": "alexandra-jullien",
+    "storage_bucket": "alexandra-jullien.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358773225088:android:8df61be3114e30c1",
+        "android_client_info": {
+          "package_name": "com.eaarcenal.bn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358773225088-pkpf7j88ng5jk5vtgrq3eub4jf8ef3l1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe2-QGFX__m2lk0VhjvFKHR1BhyNZn0Xo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
