@@ -10,16 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="15dp">
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/register_username"
-                android:hint="@string/register_username"
+                android:id="@+id/register_email"
+                android:inputType="textEmailAddress"
+                android:hint="@string/register_email_address"
                 android:layout_gravity="center_horizontal" />
         </android.support.design.widget.TextInputLayout>
 
@@ -49,18 +49,7 @@
                 android:layout_gravity="center_horizontal" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/register_email"
-                android:inputType="textEmailAddress"
-                android:hint="@string/register_email_address"
-                android:layout_gravity="center_horizontal" />
-        </android.support.design.widget.TextInputLayout>
+
 
         <Button
             android:layout_width="wrap_content"

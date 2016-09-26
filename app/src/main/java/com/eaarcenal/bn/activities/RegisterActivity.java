@@ -4,10 +4,14 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.method.KeyListener;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.eaarcenal.bn.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText username;
     EditText password;
     EditText confirmPassword;
     EditText email;
@@ -45,23 +48,49 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RegisterUser u = new RegisterUser();
-                u.execute(username.getText().toString(),password.getText().toString(),email.getText().toString());
+
+                if(!checkNull()){
+                    if(password.getText().toString().equals(confirmPassword.getText().toString())){
+                        RegisterUser u = new RegisterUser();
+                        u.execute(password.getText().toString(),email.getText().toString());
+                    }else{
+                        confirmPassword.setError("Password does not match");
+                    }
+                }
             }
+
+
         });
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finishActivity(0);
+                finish();
             }
         });
 
+
+    }
+
+    private boolean checkNull() {
+        boolean hasError = false;
+        if(email.getText().toString().equals("")){
+            email.setError("Email is required");
+            hasError = true;
+        }
+        if(password.getText().toString().equals("")){
+            password.setError("Password is required");
+            hasError = true;
+        }
+        if(confirmPassword.getText().toString().equals("")){
+            confirmPassword.setError("Confirm Password is required");
+            hasError = true;
+        }
+        return hasError;
     }
 
     private void instantiateViews() {
 
-        username = (EditText)findViewById(R.id.register_username);
         password = (EditText)findViewById(R.id.register_password);
         confirmPassword = (EditText)findViewById(R.id.register_confirmpassword);
         email = (EditText)findViewById(R.id.register_email);
@@ -78,14 +107,19 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(String... strings) {
-            String username = strings[0];
-            String password = strings[1];
-            String email = strings[2];
+            String password = strings[0];
+            String email = strings[1];
 
             getmAuth().createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     Log.d("AUTH REGISTER","DONE");
+                    if(task.isSuccessful()){
+                        finish();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),"Error on registering",Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
